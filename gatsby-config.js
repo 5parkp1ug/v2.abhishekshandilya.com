@@ -1,7 +1,10 @@
+const config = require("./config");
+
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "abhishekshandilya",
+    siteUrl: config.siteURL,
+    title: config.siteTitle,
+    description: config.siteDescription,
   },
   plugins: [
     "gatsby-plugin-mdx",
@@ -13,5 +16,13 @@ module.exports = {
       },
       __key: "pages",
     },
+    {
+        resolve: "gatsby-plugin-postcss",
+        options: {
+            postCssPlugins: [
+                require("tailwindcss"),
+            ]
+        }
+    }
   ],
 };

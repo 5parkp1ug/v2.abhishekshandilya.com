@@ -1,9 +1,12 @@
 import * as React from "react"
+import Layout from "../layout"
 
 // markup
 const IndexPage = () => {
   return (
-        <p>Hello World!</p>
+      <Layout>
+          <p>Hello World!</p>
+      </Layout> 
     )
 }
 
