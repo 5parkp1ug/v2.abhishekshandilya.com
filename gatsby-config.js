@@ -49,14 +49,7 @@ module.exports = {
           name: `series`,
         },
       },
-    {
-        resolve: "gatsby-plugin-postcss",
-        options: {
-            postCssPlugins: [
-                require("tailwindcss"),
-            ]
-        }
-    },
+   
     `gatsby-plugin-fontawesome-css`
   ],
   flags: {
