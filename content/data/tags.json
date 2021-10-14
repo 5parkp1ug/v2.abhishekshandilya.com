@@ -1,0 +1,42 @@
+[
+    {
+        "title": "javascript",
+        "description": "JavaScript is an object-oriented programming language used alongside HTML and CSS to give functionality to web pages.",
+        "color": "#f0da50"
+    },
+    {
+        "title": "reactjs",
+        "description": "React is an open source JavaScript library used for designing user interfaces.",
+        "color": "#61dbfa"
+    },
+    {
+        "title": "gatsbyjs",
+        "description": "A framework built over ReactJS to generate static page web application.  ",
+        "color": "#6f309f"
+    },
+    {
+        "title": "graphql",
+        "description": "GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. ",
+        "color": "#e10098"
+    },
+    {
+        "title": "HTML",
+        "description": "A markup language that powers the web. All websites use HTML for structuring the content.",
+        "color": "#dd3431"
+    },
+    {
+        "title": "css",
+        "description": "CSS is used to style the HTML element and to give a very fancy look for the web application.",
+        "color": "#43ace0"
+    },
+    {
+        "title": "python",
+        "description": "A general purpose programming language that is widely used for developing various applications.",
+        "color": "#f9c646"
+    },
+    {
+        "title": "django",
+        "description": "The web framework for perfectionists with deadlines.",
+        "color": "#092e20"
+    }
+]

@@ -3,15 +3,18 @@ import { useStaticQuery, Link, graphql } from "gatsby"
 import Layout from "../../layout"
 
 // markup
-const Tags = () => {
-    const tags = useStaticQuery(graphql`
+const Series = () => {
+    const series = useStaticQuery(graphql`
         query {
-            allTagsJson {
+            allSeriesJson {
                 edges {
                     node {
                         title
+                        slug
+                        content
                         description
-                        color
+                        createdAt
+
                     }
                 }
             }
@@ -19,13 +22,13 @@ const Tags = () => {
     `)
   return (
         <Layout>
-            <h1>#Tags</h1>
+            <h1>#Series</h1>
             <br /> 
             <ol>
-                {tags.allTagsJson.edges.map((edge) => {
+                {series.allSeriesJson.edges.map((edge) => {
                     return (
                         <li key={edge.node.id}>
-                            <Link to={`/tag/${edge.node.title}`}>{edge.node.title}</Link>
+                            <Link to={`/${edge.node.slug}`}>{edge.node.title}</Link>
                         </li>
                     )
                 })}
@@ -34,4 +37,4 @@ const Tags = () => {
     )
 }
 
-export default Tags
+export default Series

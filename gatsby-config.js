@@ -7,15 +7,48 @@ module.exports = {
     description: config.siteDescription,
   },
   plugins: [
-    "gatsby-plugin-mdx",
+    `gatsby-transformer-json`,
+    {
+        resolve: "gatsby-plugin-mdx",
+        options: {
+            extensions: [`.md`, `.mdx`],
+          },
+    },
+    {
+        resolve: "gatsby-source-filesystem",
+        options: {
+            path: `${__dirname}/content/data`,
+            name: `data`,
+          },
+      },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "pages",
         path: "./src/pages/",
       },
-      __key: "pages",
     },
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          path: `${__dirname}/content/posts`,
+          name: `post`,
+        },
+      },
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          path: `${__dirname}/content/projects`,
+          name: `project`,
+        },
+      },
+      {
+        resolve: `gatsby-source-filesystem`,
+        options: {
+          path: `${__dirname}/content/series`,
+          name: `series`,
+        },
+      },
     {
         resolve: "gatsby-plugin-postcss",
         options: {
@@ -23,6 +56,10 @@ module.exports = {
                 require("tailwindcss"),
             ]
         }
-    }
+    },
+    `gatsby-plugin-fontawesome-css`
   ],
+  flags: {
+      FAST_DEV: true
+  }
 };

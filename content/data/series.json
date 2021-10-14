@@ -1,0 +1,18 @@
+[
+    {
+        "title": "Customizing Django Admin",
+        "slug": "customizing-django-admin",
+        "description": "How to customize django admin to suit your needs",
+        "content": "lorm ipsum",
+        "tags": ["django", "django-admin", "python"],
+        "createdAt": "2021-10-01"
+    },
+    {
+        "title": "Python Magic Methods",
+        "slug": "python-magic-methods",
+        "description": "Understanding python's in-build magic methods",
+        "content": "lorm ipsum",
+        "tags": ["python", "python classes"],
+        "createdAt": "2021-08-01"
+    }
+]
