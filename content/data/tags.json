@@ -1,42 +1,50 @@
 [
     {
-        "title": "javascript",
+        "slug": "javascript",
+        "title": "Javascript",
         "description": "JavaScript is an object-oriented programming language used alongside HTML and CSS to give functionality to web pages.",
         "color": "#f0da50"
     },
     {
-        "title": "reactjs",
+        "slug": "reactjs",
+        "title": "ReactJs",
         "description": "React is an open source JavaScript library used for designing user interfaces.",
         "color": "#61dbfa"
     },
     {
-        "title": "gatsbyjs",
+        "slug": "gatsbyjs",
+        "title": "Gatsby JS",
         "description": "A framework built over ReactJS to generate static page web application.  ",
         "color": "#6f309f"
     },
     {
-        "title": "graphql",
+        "slug": "graphql",
+        "title": "GraphQL",
         "description": "GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data. ",
         "color": "#e10098"
     },
     {
+        "slug": "html",
         "title": "HTML",
         "description": "A markup language that powers the web. All websites use HTML for structuring the content.",
         "color": "#dd3431"
     },
     {
-        "title": "css",
+        "slug": "css",
+        "title": "CSS",
         "description": "CSS is used to style the HTML element and to give a very fancy look for the web application.",
         "color": "#43ace0"
     },
     {
-        "title": "python",
+        "slug": "python",
+        "title": "Python",
         "description": "A general purpose programming language that is widely used for developing various applications.",
         "color": "#f9c646"
     },
     {
-        "title": "django",
+        "slug": "django",
+        "title": "Django",
         "description": "The web framework for perfectionists with deadlines.",
-        "color": "#092e20"
+        "color": "#33d6a6"
     }
 ]

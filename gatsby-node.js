@@ -2,15 +2,29 @@ const path = require("path");
 
 module.exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
+  
+  // Add url field to the nodes which can be accessed later while creating links
+  const node_types = ["TutorialsJson", "TagsJson", "Mdx"]
+  if (node_types.includes(node.internal.type)) {
+      var url = ""
+    switch(node.internal.type) {
+        case "TutorialsJson":
+            url = `/tutorials/${node.slug}`
+            node.url = url;
+            break;
+        case "TagsJson":
+            url = `/tags/${node.slug}`
+            node.url = url;
+            break;
+        case "Mdx":
+            url = `/blog/${node.frontmatter.slug}`
+            node.url = url;
+            break;
+      }
+  }
 
-  if (node.internal.type === "Mdx") {
-    const slug = path.basename(node.fileAbsolutePath, ".mdx");
-    createNodeField({
-      node,
-      name: "slug",
-      value: slug,
-    });
-
+  // add collection field to filter based on post, project, tutorial etc..
+  if (node.internal.type === "Mdx") {    
     const collection = getNode(node.parent).sourceInstanceName;
     createNodeField({
       node,
@@ -23,7 +37,7 @@ module.exports.onCreateNode = ({ node, actions, getNode }) => {
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const blogTemplate = path.resolve("./src/templates/blog.js");
-  const seriesTemplate = path.resolve("./src/templates/series.js");
+  const tutorialTemplate = path.resolve("./src/templates/tutorial.js");
   const tagsTemplate = path.resolve("./src/templates/tags.js");
 
   const posts = await graphql(`
@@ -31,9 +45,10 @@ module.exports.createPages = async ({ graphql, actions }) => {
       allMdx(filter: { fields: { collection: { eq: "post" } } }) {
         edges {
           node {
-            fields {
+            frontmatter {
               slug
             }
+            url
           }
         }
       }
@@ -42,22 +57,23 @@ module.exports.createPages = async ({ graphql, actions }) => {
     result.data.allMdx.edges.forEach((edge) => {
       createPage({
         component: blogTemplate,
-        path: `/${edge.node.fields.slug}`,
+        path: `${edge.node.url}`,
         context: {
-          slug: edge.node.fields.slug,
+          slug: edge.node.frontmatter.slug,
         },
       });
     });
   });
 
-  const series = await graphql(`
+  const tutorial = await graphql(`
     query {
-      allMdx(filter: { fields: { collection: { eq: "series" } } }) {
+      allMdx(filter: { fields: { collection: { eq: "tutorial" } } }) {
         edges {
           node {
-            fields {
+            frontmatter {
               slug
             }
+            url
           }
         }
       }
@@ -66,29 +82,30 @@ module.exports.createPages = async ({ graphql, actions }) => {
     result.data.allMdx.edges.forEach((edge) => {
       createPage({
         component: blogTemplate,
-        path: `/${edge.node.fields.slug}`,
+        path: `${edge.node.url}`,
         context: {
-          slug: edge.node.fields.slug,
+          slug: edge.node.frontmatter.slug,
         },
       });
     });
   });
 
-  const series_list = await graphql(`
+  const tutorials_list = await graphql(`
     query {
-      allSeriesJson {
+        allTutorialsJson {
         edges {
           node {
             slug
+            url
           }
         }
       }
     }
   `).then((result) => {
-    result.data.allSeriesJson.edges.forEach((edge) => {
+    result.data.allTutorialsJson.edges.forEach((edge) => {
       createPage({
-        component: seriesTemplate,
-        path: `/${edge.node.slug}`,
+        component: tutorialTemplate,
+        path: `${edge.node.url}`,
         context: {
           slug: edge.node.slug,
         },
@@ -103,6 +120,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             title
+            url
           }
         }
       }
@@ -117,7 +135,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
         all_tags.push(edge.node.title);
       createPage({
         component: tagsTemplate,
-        path: `tag/${edge.node.title}`,
+        path: `${edge.node.url}`,
         context: {
           title: edge.node.title,
         },
@@ -127,7 +145,7 @@ module.exports.createPages = async ({ graphql, actions }) => {
         if (!(edge.node in all_tags)){
             createPage({
                 component: tagsTemplate,
-                path: `tag/${edge.tag}`,
+                path: `/tags/${edge.tag}`,
                 context: {
                   title: edge.tag,
                 },
@@ -144,24 +162,26 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
             frontmatter: Frontmatter
         }
         type Frontmatter {
-            series: SeriesJson @link(by: "slug")
+            tutorial: TutorialsJson @link(by: "slug")
+            slug: String!
         }
 
-      type SeriesJson implements Node @dontInfer {
+      type TutorialsJson implements Node {
         title: String!
         slug: String!
         description: String!
         content: String!
         createdAt: Date!
         tags: [String!]!
-        posts: [Mdx] @link(by: "frontmatter.series.slug", from: "slug")
+        posts: [Mdx] @link(by: "frontmatter.tutorial.slug", from: "slug")
       }
 
-      type TagsJson implements Node @dontInfer {
+      type TagsJson implements Node {
           title: String!
           description: String
           color: String
-          posts: [Mdx] @link(by: "frontmatter.tags.elemMatch.title", from: "title")
+          slug: String!
+          posts: [Mdx] @link(by: "frontmatter.tags.elemMatch.slug", from: "slug")
       }
     `,
     schema.buildObjectType({
@@ -171,8 +191,8 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
             type: "[TagsJson]",
             resolve: (source, args, context, info) => {
                 return source.tags.map(tag => {
-                    const found = context.nodeModel.getAllNodes({ type: "TagsJson" }).find(obj => obj.title === tag);
-                    return found ? found : { title: tag, color: '#000000', description: null };
+                    const found = context.nodeModel.getAllNodes({ type: "TagsJson" }).find(obj => obj.slug === tag);
+                    return found ? found : { slug: tag, title: tag, color: '#FF6347', description: null, url: `/tags/${tag}` };
                   })
             },
           },

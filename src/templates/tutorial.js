@@ -5,7 +5,7 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 
 export const query = graphql`
   query ($slug: String!) {
-    seriesJson( slug: { eq: $slug }) {
+    tutorialsJson( slug: { eq: $slug }) {
         title
         createdAt
         tags
@@ -13,10 +13,9 @@ export const query = graphql`
             id
             frontmatter {
                 title
-            }
-            fields {
                 slug
             }
+            url
         }
     }
   }
@@ -25,13 +24,13 @@ export const query = graphql`
 const Series = (props) => {
   return (
     <Layout>
-      <h1>{props.data.seriesJson.title}</h1>
-      <div>{props.data.seriesJson.content}</div>
+      <h1>{props.data.tutorialsJson.title}</h1>
+      <div>{props.data.tutorialsJson.content}</div>
       <div>
-      {props.data.seriesJson.posts.map((post) => {
+      {props.data.tutorialsJson.posts.map((post) => {
           return (
-              <li key={post.id}>
-                <Link to={`/${post.fields.slug}`}>{post.frontmatter.title}</Link>
+              <li key={`${post.id}`}>
+                <Link to={post.url}>{post.frontmatter.title}</Link>
               </li>
           )
       })}

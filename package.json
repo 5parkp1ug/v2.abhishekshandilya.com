@@ -23,15 +23,24 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
+    "@theme-ui/prism": "^0.11.3",
     "autoprefixer": "^10.3.4",
     "gatsby": "^3.13.0",
     "gatsby-plugin-fontawesome-css": "^1.1.0",
+    "gatsby-plugin-image": "^1.14.1",
     "gatsby-plugin-mdx": "^2.13.0",
     "gatsby-plugin-postcss": "^4.13.0",
+    "gatsby-plugin-sharp": "^3.14.1",
+    "gatsby-plugin-theme-ui": "^0.11.3",
+    "gatsby-remark-images": "^5.11.0",
     "gatsby-source-filesystem": "^3.13.0",
     "gatsby-transformer-json": "^3.14.0",
+    "gatsby-transformer-sharp": "^3.14.0",
+    "i": "^0.3.7",
+    "npm": "^8.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "tailwindcss": "^2.2.15"
+    "tailwindcss": "^2.2.15",
+    "theme-ui": "^0.11.3"
   }
 }

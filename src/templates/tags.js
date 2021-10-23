@@ -14,10 +14,9 @@ export const query = graphql`
       node {
         frontmatter {
           title
+          slug
         }
-        fields {
-            slug
-          }
+        url
       }
     }
   }
@@ -38,7 +37,7 @@ const Tags = (props) => {
       {props.data.allMdx.edges.map((edge) => {
           return (
               <li key={edge.node.id}>
-                <Link to={`/${edge.node.fields.slug}`}>{edge.node.frontmatter.title}</Link>
+                <Link to={edge.node.url}>{edge.node.frontmatter.title}</Link>
               </li>
           )
       })}

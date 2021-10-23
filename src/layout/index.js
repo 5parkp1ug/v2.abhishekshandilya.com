@@ -2,20 +2,18 @@ import React from "react";
 import Footer from "./footer";
 import Header from "./header";
 
+import { Box, Container } from "theme-ui";
+
 
 const Layout = (props) => {
     return (
-        <div>
-            <div>
-                <Header />
-            </div>
-            <div>
+        <Container variant="copy">
+            <Header />
+            <Container variant="copy">
                 {props.children}    
-            </div>
-            <div>
-                <Footer />
-            </div>
-        </div>
+            </Container>
+            <Footer />
+        </Container>
     )
 }
 

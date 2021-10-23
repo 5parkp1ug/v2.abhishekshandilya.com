@@ -3,10 +3,10 @@ import { useStaticQuery, Link, graphql } from "gatsby"
 import Layout from "../../layout"
 
 // markup
-const Series = () => {
-    const series = useStaticQuery(graphql`
+const Tutorials = () => {
+    const tutorials = useStaticQuery(graphql`
         query {
-            allSeriesJson {
+            allTutorialsJson {
                 edges {
                     node {
                         title
@@ -14,7 +14,7 @@ const Series = () => {
                         content
                         description
                         createdAt
-
+                        url
                     }
                 }
             }
@@ -22,13 +22,13 @@ const Series = () => {
     `)
   return (
         <Layout>
-            <h1>#Series</h1>
+            <h1># Tutorials</h1>
             <br /> 
             <ol>
-                {series.allSeriesJson.edges.map((edge) => {
+                {tutorials.allTutorialsJson.edges.map((edge) => {
                     return (
                         <li key={edge.node.id}>
-                            <Link to={`/${edge.node.slug}`}>{edge.node.title}</Link>
+                            <Link to={edge.node.url}>{edge.node.title}</Link>
                         </li>
                     )
                 })}
@@ -37,4 +37,4 @@ const Series = () => {
     )
 }
 
-export default Series
+export default Tutorials

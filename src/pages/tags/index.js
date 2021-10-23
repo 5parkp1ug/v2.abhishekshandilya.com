@@ -12,6 +12,7 @@ const Tags = () => {
                         title
                         description
                         color
+                        url
                     }
                 }
             }
@@ -25,7 +26,7 @@ const Tags = () => {
                 {tags.allTagsJson.edges.map((edge) => {
                     return (
                         <li key={edge.node.id}>
-                            <Link to={`/tag/${edge.node.title}`}>{edge.node.title}</Link>
+                            <Link to={edge.node.url}>{edge.node.title}</Link>
                         </li>
                     )
                 })}
