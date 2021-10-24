@@ -115,7 +115,7 @@ const theme = {
       fontWeight: "bold",
       lineHeight: "heading",
       mt: 0,
-      mb: 0
+      mb: 0,
     },
     ultratitle: {
       fontSize: [5, 6, 7],
@@ -289,20 +289,20 @@ const theme = {
       //   left:0,
       //   right:0,
       //   bottom:0,
-      //   borderRadius:"extra", 
-      //   padding:"2px", 
-      //   background:"linear-gradient(45deg,orange,red)", 
+      //   borderRadius:"extra",
+      //   padding:"2px",
+      //   background:"linear-gradient(45deg,orange,red)",
       //   WebkitMask: `
-      //     linear-gradient(#fff 0 0) content-box, 
+      //     linear-gradient(#fff 0 0) content-box,
       //     linear-gradient(#fff 0 0)`,
-      //   WebkitMaskComposite: `destination-out`, 
-      //   MaskComposite: "exclude", 
+      //   WebkitMaskComposite: `destination-out`,
+      //   MaskComposite: "exclude",
       // },
       ":focus,:hover": {
         boxShadow: "elevated",
         transform: "scale(1.0225)",
       },
-  },
+    },
     translucent: null,
     translucentDark: null,
   },
@@ -389,18 +389,18 @@ const theme = {
       },
       "*::-webkit-scrollbar-thumb": {
         backgroundImage: (t) => t.util.gx("red", "orange"),
-        borderRadius: "extra"
+        borderRadius: "extra",
       },
       ".gatsby-image-wrapper": {
         borderRadius: "extra",
-        mb: 3
-      }
+        mb: 3,
+      },
     },
     blockquote: {
       borderLeft: "3px solid",
       px: 3,
       ml: 1,
-      borderImage: `linear-gradient(to bottom, orange, red) 1 100%`
+      borderImage: `linear-gradient(to bottom, orange, red) 1 100%`,
     },
     h1: {
       variant: "text.heading",

@@ -1,12 +1,5 @@
 import * as React from "react";
 import { Link } from "gatsby";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGithub,
-  faFacebook,
-  faLinkedin,
-  faStackOverflow,
-} from "@fortawesome/free-brands-svg-icons";
 import ColorSwitcher from "../../components/color-switcher";
 import config from "../../../config";
 import {

@@ -2,7 +2,7 @@ import React from "react";
 import Footer from "./footer";
 import Header from "./header";
 
-import { Box, Container } from "theme-ui";
+import { Container } from "theme-ui";
 
 
 const Layout = (props) => {

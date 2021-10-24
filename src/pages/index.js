@@ -1,7 +1,7 @@
 import * as React from "react";
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery } from "gatsby";
 import Layout from "../layout/index";
-import { BaseStyles, Card, Grid } from "@theme-ui/components";
+import { Grid } from "@theme-ui/components";
 
 import PostCard from "../components/post-card/PostCard";
 // markup
@@ -23,9 +23,9 @@ const Blog = () => {
                 childImageSharp {
                   gatsbyImageData(
                     placeholder: BLURRED
-                    width: 800,
-                    height: 400,
-                    transformOptions: {cropFocus: CENTER}
+                    width: 800
+                    height: 400
+                    transformOptions: { cropFocus: CENTER }
                   )
                 }
               }

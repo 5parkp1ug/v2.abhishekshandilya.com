@@ -1,7 +1,6 @@
 import * as React from "react";
 import Layout from "../layout/index";
 import { graphql, Link } from "gatsby";
-import { MDXRenderer } from "gatsby-plugin-mdx";
 
 export const query = graphql`
   query ($slug: String!) {
